@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <h1>Welcome User 👋</h1>
+    <title>Cloud Storage Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #749594;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        h1 {
+            color: #0B6623;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .upload-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        button {
+            background-color: #466D1D;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3A5311;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th {
+            background-color: #32612D;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        a {
+            color: #0B6623;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .file-row:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>☁️ Cloud File Storage System</h1>
+
+    <div class="card upload-box">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload File</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>📂 Uploaded Files</h2>
+
+        <table>
+            <tr>
+                <th>File Name</th>
+                <th>Action</th>
+            </tr>
+
+            {% for file in files %}
+            <tr class="file-row">
+                <td>{{ file }}</td>
+                <td>
+                    <a href="/download/{{ file }}">Download</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
